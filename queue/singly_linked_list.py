@@ -1,3 +1,4 @@
+
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -9,6 +10,8 @@ class LinkedList:
         self.length = 0
     def __str__(self):
         pass
+    def __len__(self):
+        return self.length
     def add_to_tail(self, value):
         # Check if there's a tail
         # If there is no tail (empty list)
@@ -30,7 +33,7 @@ class LinkedList:
         self.length += 1
     def remove_head(self):
         # If not head (empty list)
-        if self.head is None:  
+        if self.head is None:  # if self.head is None
             return None
         # List with one element:
         if self.head == self.tail:
@@ -50,21 +53,21 @@ class LinkedList:
             #  Return current_head.value
             self.length = self.length - 1
             return current_head.value
-    
     def remove_tail(self):
-        # Check if it's there
+        # Remove Tail:
         if self.tail is None:
             return None
         # List of 1 element:
         if self.head == self.tail:
         # Save the current_tail.value
-            current_tail = self.tail 
+            current_tail = self.tail
         # Set self.tail to None
             self.tail = None
         # Set self.head to None
             self.head = None
             self.length = self.length - 1
             return current_tail.value
+        # Check if it's there
         # General case:
         else:
         # Start at head and iterate to the next-to-last node
@@ -81,7 +84,6 @@ class LinkedList:
             current_node.next = None
             self.length = self.length - 1
             return current_tail.value
-
     def add_to_head(self, value):
         # If no head / empty list:
         if self.head is None:
@@ -102,7 +104,6 @@ class LinkedList:
             self.head = new_node
         # increment self.length
             self.length += 1
-    
     def remove_at_index(self, index):
         # Remove at index i:
         # 0) Check that length > i. If not, return None
@@ -123,4 +124,4 @@ class LinkedList:
         prev_node.next = target.next
         target.next = None
         self.length = self.length - 1
-        return target.value        
+        return target.value
