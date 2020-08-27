@@ -9,6 +9,10 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+from stack import Stack
+from queue import Queue
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -84,18 +88,46 @@ class BSTNode:
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
-    def in_order_print(self):
-        pass
+    def in_order_print(self, node):
+        if self.left:
+            self.left.in_order_print(self.left)
+        print(self.value)
+        if self.right:
+            self.right.in_order_print(self.right)
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
-    def bft_print(self):
-        pass
+    def bft_print(self, node):
+        queue = []
+        queue.append(node)
+
+        while(len(queue) > 0):
+            print(queue[0].value)
+            pop_node = queue.pop(0)
+
+            if pop_node.left is not None:
+                queue.append(pop_node.left)
+
+            if pop_node.right is not None:
+                queue.append(pop_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
-    def dft_print(self):
-        pass
+    def dft_print(self, node):
+        stack = []
+        stack.append(node)
+
+        while(len(stack) > 0):
+            pop_node = stack.pop()
+            print(pop_node.value)
+
+            if pop_node.left is not None:
+                stack.append(pop_node.left)
+
+            if pop_node.right is not None:
+                stack.append(pop_node.right)
+
 
     # Stretch Goals -------------------------
     # Note: Research may be required
@@ -113,13 +145,13 @@ This code is necessary for testing the `print` methods
 """
 bst = BSTNode(1)
 
-# bst.insert(8)
-# bst.insert(5)
-# bst.insert(7)
-# bst.insert(6)
-# bst.insert(3)
-# bst.insert(4)
-# bst.insert(2)
+bst.insert(8)
+bst.insert(5)
+bst.insert(7)
+bst.insert(6)
+bst.insert(3)
+bst.insert(4)
+bst.insert(2)
 
 # bst.bft_print()
 # bst.dft_print()
